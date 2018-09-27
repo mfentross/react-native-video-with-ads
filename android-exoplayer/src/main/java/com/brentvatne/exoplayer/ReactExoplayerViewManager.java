@@ -228,7 +228,7 @@ public class ReactExoplayerViewManager extends ViewGroupManager<ReactExoplayerVi
 
     @ReactMethod
     public void requestAds() {
-        videoView.requestAds()
+        videoView.requestAds();
     }
 
     @ReactProp(name = PROP_BUFFER_CONFIG)
