@@ -5,7 +5,6 @@ import android.net.Uri;
 import android.text.TextUtils;
 
 import com.facebook.react.bridge.Dynamic;
-import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.common.MapBuilder;
@@ -227,8 +226,8 @@ public class ReactExoplayerViewManager extends ViewGroupManager<ReactExoplayerVi
         videoView.setAdTagUrl(adTagUrl);
     }
 
-    @ReactMethod
-    public void requestAds(final ReactExoplayerView videoView) {
+    @Override
+    public void receiveCommand(final ReactExoplayerView videoView, int commandId, @Nullable ReadableArray args) {
         videoView.requestAds();
     }
 
