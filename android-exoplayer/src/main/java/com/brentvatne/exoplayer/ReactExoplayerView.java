@@ -337,17 +337,16 @@ class ReactExoplayerView extends FrameLayout implements
                 mAdsManager.init();
             }
         });
-        Log.e("IMA", this.adTagUrl);
-        requestAds(this.adTagUrl);
+        Log.i("IMA","Ad Tag URL: " + this.adTagUrl);
     }
 
-    private void requestAds(String adTagUrl) {
+    public void requestAds() {
         AdDisplayContainer adDisplayContainer = mSdkFactory.createAdDisplayContainer();
         adDisplayContainer.setAdContainer(exoPlayerView);
 
         // Create the ads request.
         AdsRequest request = mSdkFactory.createAdsRequest();
-        request.setAdTagUrl(adTagUrl);
+        request.setAdTagUrl(this.adTagUrl);
         request.setAdDisplayContainer(adDisplayContainer);
         request.setContentProgressProvider(new ContentProgressProvider() {
             @Override

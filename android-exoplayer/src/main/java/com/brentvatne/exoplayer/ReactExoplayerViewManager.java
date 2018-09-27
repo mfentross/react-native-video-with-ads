@@ -226,6 +226,11 @@ public class ReactExoplayerViewManager extends ViewGroupManager<ReactExoplayerVi
         videoView.setAdTagUrl(adTagUrl);
     }
 
+    @ReactMethod
+    public void requestAds() {
+        videoView.requestAds()
+    }
+
     @ReactProp(name = PROP_BUFFER_CONFIG)
     public void setBufferConfig(final ReactExoplayerView videoView, @Nullable ReadableMap bufferConfig) {
         int minBufferMs = DefaultLoadControl.DEFAULT_MIN_BUFFER_MS;
