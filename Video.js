@@ -23,6 +23,10 @@ export default class Video extends Component {
     };
   }
 
+  componentDidMount() {
+    this.videoHandle = findNodeHandle(this._root);
+  }
+
   setNativeProps(nativeProps) {
     this._root.setNativeProps(nativeProps);
   }
@@ -72,7 +76,7 @@ export default class Video extends Component {
   };
 
   requestAds = () => {
-    RCTVideo.requestAds();
+    UIManager.dispatchViewManagerCommand(this.videoHandle, 0, null);
   }
 
   _assignRoot = (component) => {
