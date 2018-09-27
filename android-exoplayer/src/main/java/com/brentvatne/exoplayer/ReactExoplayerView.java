@@ -1046,6 +1046,7 @@ class ReactExoplayerView extends FrameLayout implements
     @Override
     public void onAdError(AdErrorEvent adErrorEvent) {
         Log.e("IMA", "Ad Error: " + adErrorEvent.getError().getMessage());
+        eventEmitter.adError();
         startPlayback();
     }
 
@@ -1066,8 +1067,12 @@ class ReactExoplayerView extends FrameLayout implements
             case CONTENT_PAUSE_REQUESTED:
                 // AdEventType.CONTENT_PAUSE_REQUESTED is fired immediately before a video
                 // ad is played.
+                eventEmitter.adsLoaded();
                 mIsAdDisplayed = true;
                 pausePlayback();
+                break;
+            case STARTED:
+                eventEmitter.adStarted();
                 break;
             case CONTENT_RESUME_REQUESTED:
                 // AdEventType.CONTENT_RESUME_REQUESTED is fired when the ad is completed
@@ -1080,6 +1085,7 @@ class ReactExoplayerView extends FrameLayout implements
                     mAdsManager.destroy();
                     mAdsManager = null;
                 }
+                eventEmitter.adsCompleted();
                 break;
             default:
                 break;
