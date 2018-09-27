@@ -227,7 +227,7 @@ public class ReactExoplayerViewManager extends ViewGroupManager<ReactExoplayerVi
     }
 
     @ReactMethod
-    public void requestAds() {
+    public void requestAds(final ReactExoplayerView videoView) {
         videoView.requestAds();
     }
 
