@@ -16,6 +16,10 @@ android {
     }
 }
 
+repositories {
+    google()
+}
+
 dependencies {
     //noinspection GradleDynamicVersion
     provided "com.facebook.react:react-native:${safeExtGet('reactNativeVersion', '+')}"
@@ -33,4 +37,10 @@ dependencies {
     }
     compile 'com.squareup.okhttp3:okhttp:3.11.0'
 
+    compile('com.google.ads.interactivemedia.v3:interactivemedia:3.9.0') {
+        exclude group: 'com.android.support'
+    }
+    compile('com.google.android.gms:play-services-ads:15.0.1') {
+        exclude group: 'com.android.support'
+    }
 }
