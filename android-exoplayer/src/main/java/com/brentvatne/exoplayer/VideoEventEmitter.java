@@ -232,9 +232,7 @@ class VideoEventEmitter {
     void adsLoaded() {
         receiveEvent(EVENT_ADS_LOADED, null);
     }
-    void adStarted() {
-        receiveEvent(EVENT_AD_STARTED, null);
-    }
+    void adStarted() { receiveEvent(EVENT_AD_STARTED, null); }
 
     void error(String errorString, Exception exception) {
         WritableMap error = Arguments.createMap();
