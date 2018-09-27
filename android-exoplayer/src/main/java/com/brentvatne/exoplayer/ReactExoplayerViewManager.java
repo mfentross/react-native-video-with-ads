@@ -51,6 +51,7 @@ public class ReactExoplayerViewManager extends ViewGroupManager<ReactExoplayerVi
     private static final String PROP_DISABLE_FOCUS = "disableFocus";
     private static final String PROP_FULLSCREEN = "fullscreen";
     private static final String PROP_USE_TEXTURE_VIEW = "useTextureView";
+    private static final String PROP_AD_TAG_URL = "adTagUrl";
 
     @Override
     public String getName() {
@@ -218,6 +219,11 @@ public class ReactExoplayerViewManager extends ViewGroupManager<ReactExoplayerVi
     @ReactProp(name = PROP_USE_TEXTURE_VIEW, defaultBoolean = false)
     public void setUseTextureView(final ReactExoplayerView videoView, final boolean useTextureView) {
         videoView.setUseTextureView(useTextureView);
+    }
+
+    @ReactProp(name = PROP_AD_TAG_URL)
+    public void setAdTagUrl(final ReactExoplayerView videoView, final String adTagUrl) {
+        videoView.setAdTagUrl(adTagUrl);
     }
 
     @ReactProp(name = PROP_BUFFER_CONFIG)
