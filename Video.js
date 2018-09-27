@@ -71,6 +71,10 @@ export default class Video extends Component {
     this.setNativeProps({ fullscreen: false });
   };
 
+  requestAds = () => {
+    RCTVideo.requestAds();
+  }
+
   _assignRoot = (component) => {
     this._root = component;
   };
@@ -379,6 +383,7 @@ Video.propTypes = {
   onPlaybackRateChange: PropTypes.func,
   onAudioFocusChanged: PropTypes.func,
   onAudioBecomingNoisy: PropTypes.func,
+  adTagUrl: PropTypes.string,
 
   /* Required by react-native */
   scaleX: PropTypes.number,
