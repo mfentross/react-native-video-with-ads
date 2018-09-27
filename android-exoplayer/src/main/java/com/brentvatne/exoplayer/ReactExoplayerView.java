@@ -1062,12 +1062,12 @@ class ReactExoplayerView extends FrameLayout implements
                 // AdsManager.start() begins ad playback. This method is ignored for VMAP or
                 // ad rules playlists, as the SDK will automatically start executing the
                 // playlist.
+                eventEmitter.adsLoaded();
                 mAdsManager.start();
                 break;
             case CONTENT_PAUSE_REQUESTED:
                 // AdEventType.CONTENT_PAUSE_REQUESTED is fired immediately before a video
                 // ad is played.
-                eventEmitter.adsLoaded();
                 mIsAdDisplayed = true;
                 pausePlayback();
                 break;
