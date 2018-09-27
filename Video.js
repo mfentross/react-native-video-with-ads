@@ -199,6 +199,30 @@ export default class Video extends Component {
     }
   };
 
+  _onAdsComplete = (event) => {
+    if (this.props.onBuffer) {
+      this.props.onAdsComplete(event.nativeEvent);
+    }
+  };
+
+  _onAdError = (event) => {
+    if (this.props.onBuffer) {
+      this.props.onAdError(event.nativeEvent);
+    }
+  };
+
+  _onAdsLoaded = (event) => {
+    if (this.props.onBuffer) {
+      this.props.onAdsLoaded(event.nativeEvent);
+    }
+  };
+
+  _onAdStarted = (event) => {
+    if (this.props.onBuffer) {
+      this.props.onAdStarted(event.nativeEvent);
+    }
+  };
+
   render() {
     const resizeMode = this.props.resizeMode;
     const source = resolveAssetSource(this.props.source) || {};
@@ -387,6 +411,10 @@ Video.propTypes = {
   onPlaybackRateChange: PropTypes.func,
   onAudioFocusChanged: PropTypes.func,
   onAudioBecomingNoisy: PropTypes.func,
+  onAdError: PropTypes.func,
+  onAdsComplete: PropTypes.func,
+  onAdsLoaded: PropTypes.func,
+  onAdStarted: PropTypes.func,
   adTagUrl: PropTypes.string,
 
   /* Required by react-native */
