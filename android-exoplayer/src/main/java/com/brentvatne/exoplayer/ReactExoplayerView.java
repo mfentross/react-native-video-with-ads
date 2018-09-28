@@ -3,6 +3,7 @@ package com.brentvatne.exoplayer;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.media.AudioFocusRequest;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Handler;
@@ -1043,6 +1044,10 @@ class ReactExoplayerView extends FrameLayout implements
         this.adTagUrl = adTagUrl;
     }
 
+    public void startAds() {
+        mAdsManager.start();
+    }
+
     @Override
     public void onAdError(AdErrorEvent adErrorEvent) {
         Log.e("IMA", "Ad Error: " + adErrorEvent.getError().getMessage());
@@ -1063,13 +1068,11 @@ class ReactExoplayerView extends FrameLayout implements
                 // ad rules playlists, as the SDK will automatically start executing the
                 // playlist.
                 eventEmitter.adsLoaded();
-                mAdsManager.start();
                 break;
             case CONTENT_PAUSE_REQUESTED:
                 // AdEventType.CONTENT_PAUSE_REQUESTED is fired immediately before a video
                 // ad is played.
                 mIsAdDisplayed = true;
-                pausePlayback();
                 break;
             case STARTED:
                 eventEmitter.adStarted();
@@ -1078,7 +1081,6 @@ class ReactExoplayerView extends FrameLayout implements
                 // AdEventType.CONTENT_RESUME_REQUESTED is fired when the ad is completed
                 // and you should start playing your content.
                 mIsAdDisplayed = false;
-                startPlayback();
                 break;
             case ALL_ADS_COMPLETED:
                 if (mAdsManager != null) {

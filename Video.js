@@ -79,6 +79,10 @@ export default class Video extends Component {
     UIManager.dispatchViewManagerCommand(this.videoHandle, 0, null);
   }
 
+  startAds = () => {
+    UIManager.dispatchViewManagerCommand(this.videoHandle, 1, null);
+  }
+
   _assignRoot = (component) => {
     this._root = component;
   };

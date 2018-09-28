@@ -53,6 +53,9 @@ public class ReactExoplayerViewManager extends ViewGroupManager<ReactExoplayerVi
     private static final String PROP_USE_TEXTURE_VIEW = "useTextureView";
     private static final String PROP_AD_TAG_URL = "adTagUrl";
 
+    private static final int REQUEST_ADS_COMMAND = 0;
+    private static final int START_ADS_COMMAND = 1;
+
     @Override
     public String getName() {
         return REACT_CLASS;
@@ -228,7 +231,16 @@ public class ReactExoplayerViewManager extends ViewGroupManager<ReactExoplayerVi
 
     @Override
     public void receiveCommand(final ReactExoplayerView videoView, int commandId, @Nullable ReadableArray args) {
-        videoView.requestAds();
+        switch (commandId) {
+            case REQUEST_ADS_COMMAND:
+                videoView.requestAds();
+                break;
+            case START_ADS_COMMAND:
+                videoView.startAds();
+                break;
+            default:
+                break;
+        }
     }
 
     @ReactProp(name = PROP_BUFFER_CONFIG)
