@@ -75,8 +75,8 @@ export default class Video extends Component {
     this.setNativeProps({ fullscreen: false });
   };
 
-  requestAds = () => {
-    UIManager.dispatchViewManagerCommand(this.videoHandle, 0, null);
+  requestAds = (url) => {
+    UIManager.dispatchViewManagerCommand(this.videoHandle, 0, [url]);
   }
 
   startAds = () => {
@@ -419,7 +419,6 @@ Video.propTypes = {
   onAdsComplete: PropTypes.func,
   onAdsLoaded: PropTypes.func,
   onAdStarted: PropTypes.func,
-  adTagUrl: PropTypes.string,
 
   /* Required by react-native */
   scaleX: PropTypes.number,

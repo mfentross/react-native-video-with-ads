@@ -51,7 +51,6 @@ public class ReactExoplayerViewManager extends ViewGroupManager<ReactExoplayerVi
     private static final String PROP_DISABLE_FOCUS = "disableFocus";
     private static final String PROP_FULLSCREEN = "fullscreen";
     private static final String PROP_USE_TEXTURE_VIEW = "useTextureView";
-    private static final String PROP_AD_TAG_URL = "adTagUrl";
 
     private static final int REQUEST_ADS_COMMAND = 0;
     private static final int START_ADS_COMMAND = 1;
@@ -224,16 +223,11 @@ public class ReactExoplayerViewManager extends ViewGroupManager<ReactExoplayerVi
         videoView.setUseTextureView(useTextureView);
     }
 
-    @ReactProp(name = PROP_AD_TAG_URL)
-    public void setAdTagUrl(final ReactExoplayerView videoView, final String adTagUrl) {
-        videoView.setAdTagUrl(adTagUrl);
-    }
-
     @Override
     public void receiveCommand(final ReactExoplayerView videoView, int commandId, @Nullable ReadableArray args) {
         switch (commandId) {
             case REQUEST_ADS_COMMAND:
-                videoView.requestAds();
+                videoView.requestAds(args.getString(1));
                 break;
             case START_ADS_COMMAND:
                 videoView.startAds();

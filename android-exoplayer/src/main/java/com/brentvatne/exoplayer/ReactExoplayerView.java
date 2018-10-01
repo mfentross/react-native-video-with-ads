@@ -147,7 +147,6 @@ class ReactExoplayerView extends FrameLayout implements
     private boolean playInBackground = false;
     private boolean useTextureView = false;
     private Map<String, String> requestHeaders;
-    private String adTagUrl;
     // \ End props
 
     // React
@@ -338,16 +337,16 @@ class ReactExoplayerView extends FrameLayout implements
                 mAdsManager.init();
             }
         });
-        Log.i("IMA","Ad Tag URL: " + this.adTagUrl);
     }
 
-    public void requestAds() {
+    public void requestAds(String adTagUrl) {
+        Log.i("IMA","Ad Tag URL: " + adTagUrl);
         AdDisplayContainer adDisplayContainer = mSdkFactory.createAdDisplayContainer();
         adDisplayContainer.setAdContainer(exoPlayerView);
 
         // Create the ads request.
         AdsRequest request = mSdkFactory.createAdsRequest();
-        request.setAdTagUrl(this.adTagUrl);
+        request.setAdTagUrl(adTagUrl);
         request.setAdDisplayContainer(adDisplayContainer);
         request.setContentProgressProvider(new ContentProgressProvider() {
             @Override
@@ -1038,10 +1037,6 @@ class ReactExoplayerView extends FrameLayout implements
         bufferForPlaybackAfterRebufferMs = newBufferForPlaybackAfterRebufferMs;
         releasePlayer();
         initializePlayer();
-    }
-
-    public void setAdTagUrl(String adTagUrl) {
-        this.adTagUrl = adTagUrl;
     }
 
     public void startAds() {
