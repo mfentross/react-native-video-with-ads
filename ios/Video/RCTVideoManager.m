@@ -9,9 +9,12 @@ RCT_EXPORT_MODULE();
 
 @synthesize bridge = _bridge;
 
+RCTVideo * _video;
+
 - (UIView *)view
 {
-  return [[RCTVideo alloc] initWithEventDispatcher:self.bridge.eventDispatcher];
+  _video = [[RCTVideo alloc] initWithEventDispatcher:self.bridge.eventDispatcher];
+  return _video;
 }
 
 - (dispatch_queue_t)methodQueue
@@ -56,6 +59,18 @@ RCT_EXPORT_VIEW_PROPERTY(onReadyForDisplay, RCTBubblingEventBlock);
 RCT_EXPORT_VIEW_PROPERTY(onPlaybackStalled, RCTBubblingEventBlock);
 RCT_EXPORT_VIEW_PROPERTY(onPlaybackResume, RCTBubblingEventBlock);
 RCT_EXPORT_VIEW_PROPERTY(onPlaybackRateChange, RCTBubblingEventBlock);
+RCT_EXPORT_VIEW_PROPERTY(onAdsLoaded, RCTBubblingEventBlock);
+RCT_EXPORT_VIEW_PROPERTY(onAdStarted, RCTBubblingEventBlock);
+RCT_EXPORT_VIEW_PROPERTY(onAdsComplete, RCTBubblingEventBlock);
+RCT_EXPORT_VIEW_PROPERTY(onAdError, RCTBubblingEventBlock);
+
+RCT_EXPORT_METHOD(requestAds:(NSString *)url){
+    [_video requestAds:url];
+}
+
+RCT_EXPORT_METHOD(startAds){
+    [_video startAds];
+}
 
 - (NSDictionary *)constantsToExport
 {

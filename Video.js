@@ -79,7 +79,7 @@ export default class Video extends Component {
     if (Platform.OS === 'android') {
       UIManager.dispatchViewManagerCommand(this.videoHandle, 0, [url]);
     } else {
-
+      NativeModules.UIManager.RCTVideo.requestAds(url);
     }
   }
 
@@ -87,7 +87,7 @@ export default class Video extends Component {
     if (Platform.OS === 'android') {
       UIManager.dispatchViewManagerCommand(this.videoHandle, 1, null);
     } else {
-
+      NativeModules.UIManager.RCTVideo.startAds();
     }
   }
 

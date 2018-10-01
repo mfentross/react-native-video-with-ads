@@ -35,9 +35,16 @@
 @property (nonatomic, copy) RCTBubblingEventBlock onPlaybackStalled;
 @property (nonatomic, copy) RCTBubblingEventBlock onPlaybackResume;
 @property (nonatomic, copy) RCTBubblingEventBlock onPlaybackRateChange;
+@property (nonatomic, copy) RCTBubblingEventBlock onAdsLoaded;
+@property (nonatomic, copy) RCTBubblingEventBlock onAdStarted;
+@property (nonatomic, copy) RCTBubblingEventBlock onAdsComplete;
+@property (nonatomic, copy) RCTBubblingEventBlock onAdError;
 
 - (instancetype)initWithEventDispatcher:(RCTEventDispatcher *)eventDispatcher NS_DESIGNATED_INITIALIZER;
 
 - (AVPlayerViewController*)createPlayerViewController:(AVPlayer*)player withPlayerItem:(AVPlayerItem*)playerItem;
+
+- (void)requestAds:(NSString *)adTagUrl;
+- (void)startAds;
 
 @end
