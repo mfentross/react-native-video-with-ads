@@ -227,7 +227,7 @@ public class ReactExoplayerViewManager extends ViewGroupManager<ReactExoplayerVi
     public void receiveCommand(final ReactExoplayerView videoView, int commandId, @Nullable ReadableArray args) {
         switch (commandId) {
             case REQUEST_ADS_COMMAND:
-                videoView.requestAds(args.getString(1));
+                videoView.requestAds(args.getString(0));
                 break;
             case START_ADS_COMMAND:
                 videoView.startAds();
