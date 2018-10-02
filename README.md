@@ -16,13 +16,13 @@ For the most part, you should be able to use the documentation from [react-nativ
 Using npm:
 
 ```shell
-npm install --save react-native-video-with-ads
+npm install --save @endemolshinegroup/react-native-video-with-ads
 ```
 
 or using yarn:
 
 ```shell
-yarn add react-native-video-with-ads
+yarn add @endemolshinegroup/react-native-video-with-ads
 ```
 
 In the `ios` directory, setup your Podfile like it is described in the [react-native documentation](https://facebook.github.io/react-native/docs/integration-with-existing-apps#configuring-cocoapods-dependencies). 
@@ -31,7 +31,7 @@ Then add the pod for react-native-video-with-ads
 
 ```diff
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
-+  pod 'react-native-video-with-ads', :path => '../node_modules/react-native-video-with-ads/react-native-video.podspec'
++ pod "react-native-video", :path => '../node_modules/@endemolshinegroup/react-native-video-with-ads/react-native-video.podspec'
 end
 ```
 
@@ -41,7 +41,72 @@ In the project root, then run `react-native link`
 
 ## Usage
 
-The same as [react-native-video](https://github.com/react-native-community/react-native-video), with the following additions:
+The same as [react-native-video](https://github.com/react-native-community/react-native-video), with the following additions.
+
+### Simple Example
+```
+import React, {Component} from 'react';
+import {StyleSheet, View} from 'react-native';
+import Video from '@endemolshinegroup/react-native-video-with-ads';
+
+export default class App extends Component {
+
+  state = {
+    paused: false
+  }
+
+  constructor(props) {
+    super(props);
+    this.onAdsLoaded = this.onAdsLoaded.bind(this);
+    this.onAdStarted = this.onAdStarted.bind(this);
+    this.onAdsComplete = this.onAdsComplete.bind(this);
+  }
+
+  componentDidMount() {
+    this._video.requestAds("https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ct%3Dlinear&correlator=");
+  }
+
+  onAdsLoaded() {
+    setTimeout(() => {
+      this._video.startAds();
+    }, 10000);
+  }
+
+  onAdStarted() {
+    this.setState({paused: true});
+  }
+
+  onAdsComplete() {
+    this.setState({paused: false});
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <Video
+            ref={component => this._video = component}
+            source={{uri: "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"}}
+            style={{width: 300, height: 300}}
+            paused={this.state.paused}
+            onAdsLoaded={this.onAdsLoaded}
+            onAdStarted={this.onAdStarted}
+            onAdsComplete={this.onAdsComplete}
+          >
+          </Video>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  }
+});
+```
 
 ### Event props
 
