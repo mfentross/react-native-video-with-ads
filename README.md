@@ -37,7 +37,7 @@ end
 
 In the `ios` directory, run `pod install`
 
-In the project root, then run `react-native link react-native-video`
+In the project root, then run `react-native link`
 
 ## Usage
 
