@@ -54,5 +54,8 @@
         "TextTrackType.js",
         "react-native-video.podspec",
         "VideoResizeMode.js"
-    ]
+    ],
+    "publishConfig": {
+        "access": "public"
+    }
 }
