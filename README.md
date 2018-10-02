@@ -44,16 +44,6 @@ In the project root, then run `react-native link`
 The same as [react-native-video](https://github.com/react-native-community/react-native-video), with the following additions:
 
 ### Event props
-* [onAdError](#onAdError)
-* [onAdsComplete](#onAdsComplete)
-* [onAdsLoaded](#onAdsLoaded)
-* [onAdStarted](#onAdStarted)
-
-### Methods
-* [requestAds](#requestAds)
-* [startAds](#startAds)
-
-### Event props
 
 #### onAdError
 Callback function that is called when there is an error while loading an ad. When an error occurs the video will continue playback automatically. If you require additional functionality, use this callback
