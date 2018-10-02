@@ -28,14 +28,15 @@
         "url": "git@github.com:EndemolShineGroup/react-native-video-with-ads.git"
     },
     "devDependencies": {
-        "eslint": "1.10.3",
         "babel-eslint": "5.0.0-beta8",
-        "eslint-plugin-react": "3.16.1",
-        "eslint-config-airbnb": "4.0.0"
+        "eslint": "1.10.3",
+        "eslint-config-airbnb": "4.0.0",
+        "eslint-plugin-react": "3.16.1"
     },
     "dependencies": {
         "keymirror": "0.1.1",
-        "prop-types": "^15.5.10"
+        "prop-types": "^15.5.10",
+        "semantic-release": "^15.9.16"
     },
     "scripts": {
         "test": "node_modules/.bin/eslint *.js"
@@ -45,7 +46,7 @@
             "sourceDir": "./android-exoplayer"
         }
     },
-    "files":[
+    "files": [
         "android-exoplayer",
         "android",
         "ios",
