@@ -219,13 +219,16 @@ class ReactExoplayerView extends FrameLayout implements
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         initializePlayer();
-        initializeAds();
     }
 
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         stopPlayback();
+        if (mAdsManager != null) {
+            mAdsManager.destroy();
+            mAdsManager = null;
+        }
     }
 
     // LifecycleEventListener implementation
@@ -340,6 +343,7 @@ class ReactExoplayerView extends FrameLayout implements
     }
 
     public void requestAds(String adTagUrl) {
+        initializeAds();
         Log.i("IMA","Ad Tag URL: " + adTagUrl);
         AdDisplayContainer adDisplayContainer = mSdkFactory.createAdDisplayContainer();
         adDisplayContainer.setAdContainer(exoPlayerView);

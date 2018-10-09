@@ -99,8 +99,6 @@ static int const RCTVideoUnset = -1;
     _allowsExternalPlayback = YES;
     _playWhenInactive = false;
     _ignoreSilentSwitch = @"inherit"; // inherit, ignore, obey
-    _adsLoader = [[IMAAdsLoader alloc] initWithSettings:nil];
-    _adsLoader.delegate = self;
 
 #if __has_include(<react-native-video/RCTVideoCache.h>)
     _videoCache = [RCTVideoCache sharedInstance];
@@ -131,6 +129,8 @@ static int const RCTVideoUnset = -1;
 }
 
 - (void)requestAds:(NSString *) adTagUrl {
+    _adsLoader = [[IMAAdsLoader alloc] initWithSettings:nil];
+    _adsLoader.delegate = self;
     // Create an ad display container for ad rendering.
     IMAAdDisplayContainer *adDisplayContainer =
     [[IMAAdDisplayContainer alloc] initWithAdContainer:self companionSlots:nil];
@@ -182,6 +182,9 @@ static int const RCTVideoUnset = -1;
     } else if (event.type == kIMAAdEvent_AD_BREAK_STARTED && self.onAdStarted) {
         self.onAdStarted(@{@"target": self.reactTag});
     } else if (event.type == kIMAAdEvent_ALL_ADS_COMPLETED && self.onAdsComplete) {
+        if (_adsManager) {
+            [_adsManager destroy];
+        }
         self.onAdsComplete(@{@"target": self.reactTag});
     }
 }
@@ -1375,6 +1378,9 @@ static int const RCTVideoUnset = -1;
     _playbackRateObserverRegistered = NO;
   }
   _player = nil;
+  if (_adsManager) {
+    [_adsManager destroy];
+  }
   
   [self removePlayerLayer];
   
