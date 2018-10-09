@@ -146,7 +146,6 @@ static int const RCTVideoUnset = -1;
     // Grab the instance of the IMAAdsManager and set ourselves as the delegate.
     _adsManager = adsLoadedData.adsManager;
     
-    // NOTE: This line will cause a warning until the next step, "Display Ads".
     _adsManager.delegate = self;
     
     // Create ads rendering settings and tell the SDK to use the in-app browser.
