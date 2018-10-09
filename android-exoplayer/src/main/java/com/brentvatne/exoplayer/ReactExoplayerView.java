@@ -226,6 +226,10 @@ class ReactExoplayerView extends FrameLayout implements
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         stopPlayback();
+        if (mAdsManager != null) {
+            mAdsManager.destroy();
+            mAdsManager = null;
+        }
     }
 
     // LifecycleEventListener implementation
@@ -1078,10 +1082,6 @@ class ReactExoplayerView extends FrameLayout implements
                 mIsAdDisplayed = false;
                 break;
             case ALL_ADS_COMPLETED:
-                if (mAdsManager != null) {
-                    mAdsManager.destroy();
-                    mAdsManager = null;
-                }
                 eventEmitter.adsCompleted();
                 break;
             default:
