@@ -4,7 +4,6 @@ Currently supports Android and IOS
 
 A `<Video>` component for react-native, forked from [react-native-video](https://github.com/react-native-community/react-native-video)!
 
-
 For the most part, you should be able to use the documentation from [react-native-video](https://github.com/react-native-community/react-native-video)
 
 ## Table of Contents
