@@ -183,6 +183,7 @@ static int const RCTVideoUnset = -1;
     } else if (event.type == kIMAAdEvent_ALL_ADS_COMPLETED && self.onAdsComplete) {
         if (_adsManager) {
             [_adsManager destroy];
+            _adsManager = nil;
         }
         self.onAdsComplete(@{@"target": self.reactTag});
     }
@@ -291,6 +292,9 @@ static int const RCTVideoUnset = -1;
   [self applyModifiers];
   if (_playInBackground) {
     [_playerLayer setPlayer:_player];
+  }
+  if (_adsManager) {
+    [_adsManager resume];
   }
 }
 
@@ -1379,6 +1383,7 @@ static int const RCTVideoUnset = -1;
   _player = nil;
   if (_adsManager) {
     [_adsManager destroy];
+    _adsManager = nil;
   }
   
   [self removePlayerLayer];
