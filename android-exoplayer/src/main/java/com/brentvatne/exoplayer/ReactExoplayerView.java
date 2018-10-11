@@ -663,6 +663,9 @@ class ReactExoplayerView extends FrameLayout implements
             eventEmitter.buffering(true);
         } else {
             eventEmitter.buffering(false);
+            long pos = player.getCurrentPosition();
+            long bufferedDuration = player.getBufferedPercentage() * player.getDuration() / 100;
+            eventEmitter.progressChanged(pos, bufferedDuration, player.getDuration());
         }
     }
 
